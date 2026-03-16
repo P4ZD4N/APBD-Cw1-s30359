@@ -1,0 +1,15 @@
+# Build Folders
+bin/
+obj/
+
+# Rider project files
+.idea/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio Code settings
+.vscode/
