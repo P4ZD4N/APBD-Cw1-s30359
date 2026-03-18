@@ -1,5 +1,6 @@
 ﻿using APBD_Cw1_s30359.Enums;
 using APBD_Cw1_s30359.Models.Devices;
+using APBD_Cw1_s30359.models.rentals;
 using APBD_Cw1_s30359.Models.Users;
 
 var employee1 = new Employee("Jan", "Kowalski", new DateOnly(1980, 5, 12), UserType.Employee);
@@ -26,9 +27,15 @@ Console.WriteLine();
 Device.DisplayAvailableDevices();
 Console.WriteLine();
 
-camera1.Rent(student1, new DateTime(2026, 03, 18), new DateTime(2026, 03, 20));
-laptop1.Rent(student1, new DateTime(2026, 03, 18), new DateTime(2026, 03, 20));
-projector1.Rent(student1, new DateTime(2026, 03, 18), new DateTime(2026, 03, 20));
+var rental1 = new Rental(student1, camera1, new DateTime(2026, 03, 17, 9, 30, 0), new DateTime(2026, 03, 17, 21, 30, 0));
+var rental2 = new Rental(student1, laptop1, new DateTime(2026, 03, 18, 9, 30, 0), new DateTime(2026, 03, 20, 9, 30, 0));
 
-Console.WriteLine();
-Device.DisplayAvailableDevices();
+var rental3 = new Rental(employee1, camera2, new DateTime(2026, 03, 18, 9, 30, 0), new DateTime(2026, 03, 20, 9, 30, 0));
+var rental4 = new Rental(employee1, camera3,  new DateTime(2026, 03, 18, 9, 30, 0), new DateTime(2026, 03, 20, 9, 30, 0));
+var rental5 = new Rental(employee1, laptop2, new DateTime(2026, 03, 18, 9, 30, 0), new DateTime(2026, 03, 20, 9, 30, 0));
+var rental6 = new Rental(employee1, laptop3, new DateTime(2026, 03, 18, 9, 30, 0), new DateTime(2026, 03, 20, 9, 30, 0));
+var rental7 = new Rental(employee1, projector1, new DateTime(2026, 03, 18, 9, 30, 0), new DateTime(2026, 03, 20, 9, 30, 0));
+
+rental1.End();
+
+var rental8 = new Rental(student1, camera1, new DateTime(2026, 03, 17, 9, 30, 0), new DateTime(2026, 03, 17, 21, 30, 0));

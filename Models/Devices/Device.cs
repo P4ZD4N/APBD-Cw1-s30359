@@ -1,7 +1,3 @@
-using APBD_Cw1_s30359.Exceptions;
-using APBD_Cw1_s30359.models.rentals;
-using APBD_Cw1_s30359.Models.Users;
-
 namespace APBD_Cw1_s30359.Models.Devices;
 
 public abstract class Device
@@ -10,7 +6,7 @@ public abstract class Device
     public string Name { get; }
     public int ProductionYear { get; }
     public string SerialNumber { get; }
-    protected bool IsAvailable { get; set; }
+    public bool IsAvailable { get; set; }
 
     private static List<Device> AllDevices { get; } = new();
 
@@ -46,17 +42,4 @@ public abstract class Device
         }
     }
 
-    public void Rent(Person renter, DateTime rentalStart, DateTime rentalEnd)
-    {
-        if (rentalEnd < rentalStart)
-        {
-            throw new RentalDateTimeException();
-        }
-        
-        var rental = new Rental(renter, this, rentalStart, rentalEnd);
-        
-        IsAvailable = false;
-        
-        Console.WriteLine($"[{renter.FirstName} {renter.LastName}] New rental with ID {rental.Id} ({GetType().Name})");
-    }
 }

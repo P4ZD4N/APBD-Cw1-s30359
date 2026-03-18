@@ -1,3 +1,4 @@
+using APBD_Cw1_s30359.Exceptions;
 using APBD_Cw1_s30359.Models.Devices;
 using APBD_Cw1_s30359.Models.Users;
 
@@ -8,15 +9,33 @@ public class Rental
     public int Id { get; }
     public Person Renter { get; }
     public Device RentedDevice { get; }
-    public DateTime RentalStart { get; }
+    public DateTime RentalStart { get; set; }
     public DateTime RentalEnd { get; set; }
     public DateTime RealRentalEnd { get; set; }
     
     private static int _rentalCount = 1;
-    private static List<Rental> AllRentals { get; } = new();
+    public static List<Rental> AllRentals { get; } = new();
 
     public Rental(Person renter, Device rentedDevice, DateTime rentalStart, DateTime rentalEnd)
     {
+        if (rentalEnd < rentalStart)
+        {
+            throw new RentalDateTimeException();
+        }
+
+        if (!rentedDevice.IsAvailable)
+        {
+            throw new DeviceAlreadyRentedException();
+        }
+        
+        var employeeReachedMaximumRentals = renter is Employee && renter.NumberOfDevicesRenter >= 5;
+        var studentReachedMaximumRentals = renter is Student && renter.NumberOfDevicesRenter >= 2;
+
+        if (employeeReachedMaximumRentals || studentReachedMaximumRentals)
+        {
+            throw new RentalMaximumException();
+        }
+        
         Id = _rentalCount;
         _rentalCount++;
         
@@ -26,5 +45,36 @@ public class Rental
         RentalEnd = rentalEnd;
         
         AllRentals.Add(this);
+        
+        rentedDevice.IsAvailable = false;
+        renter.NumberOfDevicesRenter++;
+        
+        Console.WriteLine($"[{renter.FirstName} {renter.LastName}] New rental with ID {Id} ({RentedDevice.GetType().Name})");
+    }
+
+    public void End()
+    {
+        DateTime now = DateTime.Now;
+        TimeSpan difference = now - RentalEnd; 
+
+        Console.WriteLine($"Rental with ID {Id} ({RentedDevice.GetType().Name}) end deadline at {RentalEnd:yyyy-MM-dd HH:mm}");
+        Console.WriteLine($"Ended rental with ID {Id} ({RentedDevice.GetType().Name}) at {now:yyyy-MM-dd HH:mm}");
+
+        if (now > RentalEnd)
+        {
+            int lateDays = (int) Math.Ceiling(difference.TotalDays); 
+            decimal finePerDay = 5m; 
+            decimal totalFine = lateDays * finePerDay;
+
+            Console.WriteLine($"Ended rental {lateDays} after deadline, fine: {totalFine} PLN");
+        }
+        else
+        {
+            Console.WriteLine("Ended rental before deadline");
+        }
+
+        RealRentalEnd = now;
+        RentedDevice.IsAvailable = true;
+        Renter.NumberOfDevicesRenter--;
     }
 }
