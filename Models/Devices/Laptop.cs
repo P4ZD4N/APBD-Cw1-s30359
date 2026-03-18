@@ -16,4 +16,9 @@ public class Laptop : Device {
         RamGb = ramGb;
         IsTouchscreen = isTouchscreen;
     }
+    
+    public override string ToString()
+    {
+        return $"{GetType().Name} (ID {Id}): {(IsAvailable ? "Available" : "Not Available")}";
+    }
 }

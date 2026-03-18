@@ -16,4 +16,9 @@ public class Projector : Device {
         Brightness = brightness;
         IsPortable = isPortable;
     }
+    
+    public override string ToString()
+    {
+        return $"{GetType().Name} (ID {Id}): {(IsAvailable ? "Available" : "Not Available")}";
+    }
 }

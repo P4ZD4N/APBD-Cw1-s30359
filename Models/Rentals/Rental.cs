@@ -13,6 +13,7 @@ public class Rental
     public DateTime RealRentalEnd { get; set; }
     
     private static int _rentalCount = 1;
+    private static List<Rental> AllRentals { get; } = new();
 
     public Rental(Person renter, Device rentedDevice, DateTime rentalStart, DateTime rentalEnd)
     {
@@ -23,5 +24,7 @@ public class Rental
         RentedDevice = rentedDevice;
         RentalStart = rentalStart;
         RentalEnd = rentalEnd;
+        
+        AllRentals.Add(this);
     }
 }
