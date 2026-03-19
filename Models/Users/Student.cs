@@ -1,5 +1,3 @@
-using APBD_Cw1_s30359.Enums;
-
 namespace APBD_Cw1_s30359.Models.Users;
 
 public class Student : Person
@@ -8,8 +6,8 @@ public class Student : Person
         
     private static int _studentCount = 1;
 
-    public Student(string firstName, string lastName, DateOnly birthDate, UserType userType) 
-        : base(firstName, lastName, birthDate, userType)
+    public Student(string firstName, string lastName, DateOnly birthDate) 
+        : base(firstName, lastName, birthDate)
     {
         Id = _studentCount;
         _studentCount++;

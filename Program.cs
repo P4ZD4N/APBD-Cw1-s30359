@@ -1,14 +1,13 @@
-﻿using APBD_Cw1_s30359.Enums;
-using APBD_Cw1_s30359.Models.Devices;
+﻿using APBD_Cw1_s30359.Models.Devices;
 using APBD_Cw1_s30359.models.rentals;
 using APBD_Cw1_s30359.Models.Users;
 
-var employee1 = new Employee("Jan", "Kowalski", new DateOnly(1980, 5, 12), UserType.Employee);
-var employee2 = new Employee("Anna", "Nowak", new DateOnly(1975, 11, 3), UserType.Employee);
+var employee1 = new Employee("Jan", "Kowalski", new DateOnly(1980, 5, 12));
+var employee2 = new Employee("Anna", "Nowak", new DateOnly(1975, 11, 3));
 
-var student1 = new Student("Piotr", "Wiśniewski", new DateOnly(2002, 3, 15), UserType.Student);
-var student2 = new Student("Katarzyna", "Wójcik", new DateOnly(2001, 7, 22), UserType.Student);
-var student3 = new Student("Michał", "Kamiński", new DateOnly(2003, 1, 10), UserType.Student);
+var student1 = new Student("Piotr", "Wiśniewski", new DateOnly(2002, 3, 15));
+var student2 = new Student("Katarzyna", "Wójcik", new DateOnly(2001, 7, 22));
+var student3 = new Student("Michał", "Kamiński", new DateOnly(2003, 1, 10));
 
 var camera1 = new Camera("Canon", "EOS 250D", 2021, "CAM001", 24, true);
 var camera2 = new Camera("Nikon", "D3500", 2020, "CAM002", 24, true);
