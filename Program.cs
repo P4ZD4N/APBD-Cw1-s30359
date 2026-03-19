@@ -23,9 +23,7 @@ var projector2 = new Projector("BenQ", "MH550", 2020, "PROJ002", 3500, false);
 var projector3 = new Projector("ViewSonic", "PA503S", 2022, "PROJ003", 3800, true);
 
 Device.DisplayAllDevicesWithStatus();
-Console.WriteLine();
 Device.DisplayAvailableDevices();
-Console.WriteLine();
 
 var rental1 = new Rental(student1, camera1, new DateTime(2026, 03, 17, 9, 30, 0), new DateTime(2026, 03, 17, 21, 30, 0));
 var rental2 = new Rental(student1, laptop1, new DateTime(2026, 03, 18, 9, 30, 0), new DateTime(2026, 03, 20, 9, 30, 0));
@@ -36,6 +34,14 @@ var rental5 = new Rental(employee1, laptop2, new DateTime(2026, 03, 18, 9, 30, 0
 var rental6 = new Rental(employee1, laptop3, new DateTime(2026, 03, 18, 9, 30, 0), new DateTime(2026, 03, 20, 9, 30, 0));
 var rental7 = new Rental(employee1, projector1, new DateTime(2026, 03, 18, 9, 30, 0), new DateTime(2026, 03, 20, 9, 30, 0));
 
+
+Rental.DisplayRentalsForPerson(student1);
+
 rental1.End();
 
+Rental.DisplayRentalsForPerson(student1);
+
+
 var rental8 = new Rental(student1, camera1, new DateTime(2026, 03, 17, 9, 30, 0), new DateTime(2026, 03, 17, 21, 30, 0));
+
+Rental.DisplayRentalsAfterDeadline();

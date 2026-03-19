@@ -23,7 +23,8 @@ public abstract class Device
 
     public static void DisplayAllDevicesWithStatus()
     {
-        Console.WriteLine("Currently owned devices: ");
+        Console.WriteLine();
+        Console.WriteLine("All device list: ");
         foreach (var device in AllDevices)
         {
             Console.WriteLine(device);
@@ -32,6 +33,7 @@ public abstract class Device
     
     public static void DisplayAvailableDevices()
     {
+        Console.WriteLine();
         Console.WriteLine("Currently available devices: ");
         foreach (var device in AllDevices)
         {

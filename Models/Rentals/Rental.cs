@@ -57,8 +57,9 @@ public class Rental
         DateTime now = DateTime.Now;
         TimeSpan difference = now - RentalEnd; 
 
-        Console.WriteLine($"Rental with ID {Id} ({RentedDevice.GetType().Name}) end deadline at {RentalEnd:yyyy-MM-dd HH:mm}");
-        Console.WriteLine($"Ended rental with ID {Id} ({RentedDevice.GetType().Name}) at {now:yyyy-MM-dd HH:mm}");
+        Console.WriteLine();
+        Console.WriteLine($"[{Renter.FirstName} {Renter.LastName}] Rental with ID {Id} ({RentedDevice.GetType().Name}) end deadline at {RentalEnd:yyyy-MM-dd HH:mm}");
+        Console.WriteLine($"[{Renter.FirstName} {Renter.LastName}] Ended rental with ID {Id} ({RentedDevice.GetType().Name}) at {now:yyyy-MM-dd HH:mm}");
 
         if (now > RentalEnd)
         {
@@ -66,15 +67,49 @@ public class Rental
             decimal finePerDay = 5m; 
             decimal totalFine = lateDays * finePerDay;
 
-            Console.WriteLine($"Ended rental {lateDays} after deadline, fine: {totalFine} PLN");
+            Console.WriteLine($"[{Renter.FirstName} {Renter.LastName}] Ended rental {lateDays} after deadline, fine: {totalFine} PLN");
         }
         else
         {
-            Console.WriteLine("Ended rental before deadline");
+            Console.WriteLine($"[{Renter.FirstName} {Renter.LastName}] Ended rental before deadline");
         }
 
         RealRentalEnd = now;
         RentedDevice.IsAvailable = true;
         Renter.NumberOfDevicesRenter--;
+        
+        AllRentals.Remove(this);
+    }
+
+    public static void DisplayRentalsForPerson(Person person)
+    {
+        var rentals = AllRentals.Where(rental =>
+            rental.Renter is Employee emp && person is Employee e && emp.Id == e.Id ||
+            rental.Renter is Student st && person is Student s && st.Id == s.Id
+        );
+
+        Console.WriteLine();
+        Console.WriteLine($"Rentals for {person.FirstName} {person.LastName}: ");
+        foreach (var rental in rentals)
+        {
+            Console.WriteLine(rental);
+        }
+    }
+    
+    public static void DisplayRentalsAfterDeadline()
+    {
+        var rentalsAfterDeadline = AllRentals.Where(rental => DateTime.Now > rental.RentalEnd);
+        
+        Console.WriteLine();
+        Console.WriteLine("Rentals after deadline: ");
+        foreach (var rental in rentalsAfterDeadline)
+        {
+            Console.WriteLine(rental);
+        }
+    }
+
+    public override string ToString()
+    {
+        return $"[{Renter.FirstName} {Renter.LastName}] Active rental with ID {Id} ({RentedDevice.GetType().Name}) end deadline at {RentalEnd:yyyy-MM-dd HH:mm}";
     }
 }
