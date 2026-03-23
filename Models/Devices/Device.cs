@@ -8,7 +8,7 @@ public abstract class Device
     public string SerialNumber { get; }
     public bool IsAvailable { get; set; }
 
-    private static List<Device> AllDevices { get; } = new();
+    public static List<Device> AllDevices { get; } = new();
 
     protected Device(string manufacturer, string name, int productionYear, string serialNumber)
     {
@@ -43,5 +43,4 @@ public abstract class Device
             }
         }
     }
-
 }

@@ -6,6 +6,9 @@ namespace APBD_Cw1_s30359.Services;
 
 public static class RentalValidatorService
 {
+    private const int EmployeeRentalLimit = 5;
+    private const int StudentRentalLimit = 2;
+    
     public static void ValidateDates(DateTime start, DateTime end)
     {
         if (end < start)
@@ -20,10 +23,10 @@ public static class RentalValidatorService
 
     public static void ValidateRentalLimit(Person renter)
     {
-        var employeeLimit = renter is Employee && renter.NumberOfDevicesRenter >= 5;
-        var studentLimit = renter is Student && renter.NumberOfDevicesRenter >= 2;
+        var employeeLimitExceeded = renter is Employee && renter.NumberOfDevicesRenter >= EmployeeRentalLimit;
+        var studentLimitExceeded = renter is Student && renter.NumberOfDevicesRenter >= StudentRentalLimit;
 
-        if (employeeLimit || studentLimit)
-            throw new RentalMaximumException();
+        if (employeeLimitExceeded || studentLimitExceeded)
+            throw new RentalMaximumExceededException();
     }
 }
