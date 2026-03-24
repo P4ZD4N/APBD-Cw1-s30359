@@ -12,4 +12,9 @@ public class Student : Person
         Id = _studentCount;
         _studentCount++;
     }
+
+    public override int GetRentalLimit()
+    {
+        return 2;
+    }
 }

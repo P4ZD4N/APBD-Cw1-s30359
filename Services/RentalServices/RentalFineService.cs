@@ -1,12 +1,12 @@
-using APBD_Cw1_s30359.models.rentals;
+using APBD_Cw1_s30359.Models.Rentals;
 
-namespace APBD_Cw1_s30359.Services;
+namespace APBD_Cw1_s30359.Services.RentalServices;
 
-public class RentalFineService(Rental rental)
+public class RentalFineService : IFineService
 {
     private const decimal FinePerDay = 5m;
 
-    public void CheckIfFineNecessary(DateTime realRentalEnd)
+    public void CheckIfFineNecessary(Rental rental, DateTime realRentalEnd)
     {
         var difference = realRentalEnd - rental.RentalEnd; 
         

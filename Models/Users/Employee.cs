@@ -12,4 +12,9 @@ public class Employee : Person {
         Id = _employeeCount;
         _employeeCount++;
     }
+    
+    public override int GetRentalLimit()
+    {
+        return 5;
+    }
 }

@@ -6,4 +6,6 @@ public abstract class Person(string firstName, string lastName, DateOnly birthDa
     public readonly string LastName = lastName;
     public DateOnly BirthDate = birthDate;
     public int NumberOfDevicesRenter = 0;
+    
+    public abstract int GetRentalLimit();
 }

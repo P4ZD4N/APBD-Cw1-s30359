@@ -20,27 +20,4 @@ public abstract class Device
         
         AllDevices.Add(this);
     }
-
-    public static void DisplayAllDevicesWithStatus()
-    {
-        Console.WriteLine();
-        Console.WriteLine("All device list: ");
-        foreach (var device in AllDevices)
-        {
-            Console.WriteLine(device);
-        }
-    }
-    
-    public static void DisplayAvailableDevices()
-    {
-        Console.WriteLine();
-        Console.WriteLine("Currently available devices: ");
-        foreach (var device in AllDevices)
-        {
-            if (device.IsAvailable)
-            {
-                Console.WriteLine(device);
-            }
-        }
-    }
 }
