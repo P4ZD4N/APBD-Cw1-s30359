@@ -1,4 +1,4 @@
-using ModelDevice = APBD_Cw1_s30359.Models.Devices;
+using APBD_Cw1_s30359.Models.Devices;
 
 namespace APBD_Cw1_s30359.Services.DeviceServices;
 
@@ -8,7 +8,7 @@ public class DeviceService : IDeviceService
     {
         Console.WriteLine();
         Console.WriteLine("All device list: ");
-        foreach (var device in ModelDevice.Device.AllDevices)
+        foreach (var device in Device.AllDevices)
         {
             Console.WriteLine(device);
         }
@@ -18,7 +18,7 @@ public class DeviceService : IDeviceService
     {
         Console.WriteLine();
         Console.WriteLine("Currently available devices: ");
-        foreach (var device in ModelDevice.Device.AllDevices.Where(device => device.IsAvailable))
+        foreach (var device in Device.AllDevices.Where(device => device.IsAvailable))
         {
             Console.WriteLine(device);
         }

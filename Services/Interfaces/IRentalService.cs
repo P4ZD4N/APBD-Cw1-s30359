@@ -1,5 +1,4 @@
 using APBD_Cw1_s30359.Models.Devices;
-using APBD_Cw1_s30359.Models.Rentals;
 using APBD_Cw1_s30359.Models.Users;
 
 namespace APBD_Cw1_s30359.Services;
