@@ -31,7 +31,7 @@ W projekcie zadbano o uniknięcie wysokiego couplingu.
 # Sklonuj repozytorium
 git clone git@github.com:P4ZD4N/APBD-Cw1-s30359.git
 # Nawiguj do katalogu projektu
-cd /path/to/APBD-Cw1-s30359
+cd /path/to/APBD-Cw1-s30359/src
 # Przywracanie pakietów (opcjonalne)
 dotnet restore
 # Uruchom aplikacje
