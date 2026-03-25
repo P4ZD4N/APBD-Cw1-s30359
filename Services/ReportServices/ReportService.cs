@@ -1,4 +1,4 @@
-using ModelDevice = APBD_Cw1_s30359.Models.Devices;
+using APBD_Cw1_s30359.Models.Devices;
 
 namespace APBD_Cw1_s30359.Services.ReportServices;
 
@@ -16,21 +16,21 @@ public class ReportService : IReportService
 
     private void DisplayDevicesInOffer()
     {
-        Console.WriteLine($"{ModelDevice.Device.AllDevices.Count} devices in offer");
-        Console.WriteLine($"- {ModelDevice.Device.AllDevices.Count(device => device is ModelDevice.Camera)} cameras");
-        Console.WriteLine($"- {ModelDevice.Device.AllDevices.Count(device => device is ModelDevice.Laptop)} laptops");
-        Console.WriteLine($"- {ModelDevice.Device.AllDevices.Count(device => device is ModelDevice.Projector)} projectors");
+        Console.WriteLine($"{Device.AllDevices.Count} devices in offer");
+        Console.WriteLine($"- {Device.AllDevices.Count(device => device is Camera)} cameras");
+        Console.WriteLine($"- {Device.AllDevices.Count(device => device is Laptop)} laptops");
+        Console.WriteLine($"- {Device.AllDevices.Count(device => device is Projector)} projectors");
     }
     
     private void DisplayAvailableDevices(bool available)
     {
-        var devices = ModelDevice.Device.AllDevices
+        var devices = Device.AllDevices
             .Where(device => device.IsAvailable == available)
             .ToList();
 
         Console.WriteLine($"{devices.Count} devices {(available ? "available" : "unavailable")}");
-        Console.WriteLine($"- {devices.Count(device => device is ModelDevice.Camera)} cameras");
-        Console.WriteLine($"- {devices.Count(device => device is ModelDevice.Laptop)} laptops");
-        Console.WriteLine($"- {devices.Count(device => device is ModelDevice.Projector)} projectors");
+        Console.WriteLine($"- {devices.Count(device => device is Camera)} cameras");
+        Console.WriteLine($"- {devices.Count(device => device is Laptop)} laptops");
+        Console.WriteLine($"- {devices.Count(device => device is Projector)} projectors");
     }
 }
